@@ -7,18 +7,19 @@ sys.set_int_max_str_digits(100000000)
 values = []
 weights = []
 
+#generate a seed
 def generate_password(text, length=40):
     ln = len(text)
     np.random.seed(int(text[ln-7:ln]))
-    """Generates a random password of specified length using numpy."""
     characters = np.array(list(string.ascii_letters + string.digits + string.punctuation))
     password = ''.join(np.random.choice(characters, size=length))
     return password
 
 
+#assign weights to bits depending on surrounding bit values and it's own value
 def calculate_weights(binary):
     n = len(binary)
-    local_weights = [0] * n  # Initialize the weights list with zeros
+    local_weights = [0] * n  
 
     for i in range(n):
         if binary[i] == '1':
@@ -38,22 +39,23 @@ def text_to_binary(text):
         weights.append(weight)
     return values
 
+#rearange bits based on their weights
 def rearrange_bits_based_on_weights(values, weights):
     rearranged = []
     for binary, weight in zip(values, weights):
-        # Create and sort tuples of (bit, weight) in one step
         sorted_bits = ''.join(bit for bit, _ in sorted(zip(binary, weight), key=lambda x: (-x[1], x[0])))
         rearranged.append(sorted_bits)
     return rearranged
 
+#xor the rearanged bits with the original message
 def xor_binaries(original, rearranged):
     xor_result = []
     for orig, rearr in zip(original, rearranged):
-        # XOR each bit and convert result back to binary string
         xor_bin = ''.join('1' if o != r else '0' for o, r in zip(orig, rearr))
         xor_result.append(xor_bin)
     return xor_result
 
+#add the original message, rearanged message and xor message
 def combine_results(values, rearranged, xor_result):
     combined = []
     for orig, rearr, xor in zip(values, rearranged, xor_result):
@@ -61,31 +63,30 @@ def combine_results(values, rearranged, xor_result):
         combined.append(combined_bin)
     return combined
 
+#bitewise rotation
 def rotate(lst, steps='1000'):
     if not lst:
         return lst  # Return empty list as is
     steps = int(steps)
-    steps = steps % len(lst)  # Handle cases where steps > len(lst)
+    steps = steps % len(lst)  
     return lst[-steps:] + lst[:-steps]
 
 
-
+#shuffles the bits using the Fisher-Yates shuffle (deterministic)
 def deterministic_shuffle(lst):
     lst = unlist(lst)
     nlst = []
     for i in lst:
         nlst.append(i)
-    # Create a copy of the list to avoid modifying the original
     shuffled_lst = nlst[:]
     n = len(shuffled_lst)
-    # Fisher-Yates shuffle with seeded randomness
     for i in range(n-1, 0, -1):
-        j = np.random.randint(0, i+1)  # Generate a random index from 0 to i (inclusive)
+        j = np.random.randint(0, i+1)
         shuffled_lst[i], shuffled_lst[j] = shuffled_lst[j], shuffled_lst[i]
 
     return shuffled_lst
 
-
+#combines the deterministic_shuffle() and rotate() function and repeats for the security level amount
 def jumble(binary_list, security):
     security = security
     counter = 0
@@ -95,7 +96,7 @@ def jumble(binary_list, security):
         counter += 1
     return binary_list
         
-
+#pad the bits
 def pad(binary_list):
     list = []
     for value in binary_list:
@@ -123,11 +124,13 @@ def pad(binary_list):
 def unlist(binary_str):
     return ''.join(map(str, binary_str))
 
+#more bit shuffling
 def shuffle(message):
     choice = np.random.randint(1,1000000000000)
     message = int(message) + choice
     return message
 
+#initialise the seed
 def seed(ntext, password):
     seed = zip(ntext)
     nseed = 0
@@ -142,6 +145,7 @@ def seed(ntext, password):
         nseed2 += ord(my_string)
     np.random.seed(nseed + nseed2)
 
+#inverse the message depending on the seed
 def inverse(message):
     choice = np.random.randint(1,1010101010101)
     if choice % 2 == 0:
@@ -149,7 +153,7 @@ def inverse(message):
     else:
         return message
 
-
+#combine all functions
 def hash_text(text, security):
     text = text_to_binary(text)
     ntext = unlist(text)
