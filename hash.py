@@ -1,7 +1,7 @@
 from avalanche import mainA
 from pad import pad_message
 from shorten import shorten
-import numpy as np
+from secure_random import main_random
 
 def unlist(lst):
     return ' '.join(map(str, lst))
@@ -28,11 +28,10 @@ def hash(message, public_key):
 
 #further encryption for smaller messages needing to be more secure
 def encrypt(message, security):
-    np.random.seed(int(security))
     ans = []
     message = str(message)
     for i in message:
-        num = np.random.randint(1, 1000000)
+        num = main_random(1, 1000000, int(security))
         encrypted_char = ord(i) * num
         ans.append(encrypted_char)
     ans = unlist(ans)
