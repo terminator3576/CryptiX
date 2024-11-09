@@ -1,70 +1,68 @@
-# CryptiX
-python hashing software
+# 🔒 CryptiX
+### Python-based Hashing Software
 
+**CryptiX** is a customizable hashing algorithm built in Python. With adjustable security levels, it allows you to control the balance between processing time and hash security.
 
-**Known limitations**
+---
 
-a) Really large messages take a long time to process and small changes in the message can sometimes not affect the final hash value
+## 🚀 How to Use CryptiX
 
-b) Shortening function just not very good
+1. **Prepare Input**  
+   - Place your input text in `input.txt`.
 
-c) Function which takes the most time is the Fisher-Yates shuffle
+2. **Set Security Level**  
+   - Choose a security level; higher values will shuffle bits more thoroughly, increasing randomness and security at the cost of longer processing time.
 
-Feel free to give ideas about how to fix this!
+3. **Run the Algorithm**  
+   - The algorithm shuffles bits, pads/shortens the output, and uses a Merkle–Hellman cryptosystem variation for a strong hash.
 
-**Future updates**
+4. **View Output**  
+   - The final hash output appears after processing based on your chosen security level.
 
-a) Use Block Processing: Instead of shuffling the entire input, process it in smaller, fixed-size blocks (e.g., 512-bit or 1024-bit). This would reduce the time complexity, making it faster without compromising security.
+---
 
-b) Parallel Processing: For large inputs, divide the input into chunks that can be shuffled and hashed in parallel threads. This could substantially reduce the time required for processing.
+## ⏱️ Processing Times
 
-c) Add a Mixing or Diffusion Step: After the Fisher-Yates shuffle, apply a diffusion function, such as XOR with prime number-based rotations or matrix transformations. This ensures that each bit in the input can affect many bits in the final hash.
+Below are sample timings based on different security levels and input sizes:
 
-d) Implement a Merkle-Damgård Construction: To improve reliability, use a Merkle-Damgård-style construction, where each input block’s hash depends on the previous block. Used in MD5 and SHA-1.
+| **Security Level** | **1 Character**   | **10 Characters** | **100 Characters** |
+|--------------------|-------------------|-------------------|--------------------|
+| **100**           | < 1 second       | < 1 second       | < 1 second        |
+| **1,000**         | < 1 second       | < 1 second       | 1 second          |
+| **10,000**        | < 1 second       | < 1 second       | 3 seconds         |
+| **100,000**       | 1 second         | 4 seconds        | 27 seconds        |
+| **1,000,000**     | 10 seconds       | 20 seconds       | 3 minutes         |
 
-e) Incorporate Nonlinear Hash Functions: Integrate a nonlinear operation after shuffling, such as modular exponentiation with a prime modulus. This could introduce more sensitivity to bit changes.
+> ⏳ **Note**: Higher security levels increase processing time, especially with large inputs.
 
+---
 
-**Use**
+## 🌟 Planned Enhancements
 
-1) Enter an input in input.txt
-   
-2) Enter a security level, this will shuffle the bits more thouroughly the higher the number, reducing the probablility of collisions and increasing apparent randomness, but is a tradeoff between time and security.
-   
-3) Now the algorithm calculates the hash by first of all shuffling the bits, then padding/shortening the output. Last of all, it uses a variation of the Merkle–Hellman cryptosystem to produce a strong hash. 
+To improve performance and hash reliability, the following updates are planned:
 
-4) Finally, you get your output which, without a computer, would take days to calculate. You however don't care and having entered an excessively large security level are wondering why it took so long :)
+1. **Block Processing**  
+   - Split input into 512- or 1024-bit blocks, reducing processing time without sacrificing security.
 
-Timings for level 100:
- - 
- - 1 character, < 1 second
- - 10 characters, < 1 second
- - 100 characters, < 1 second
+2. **Parallel Processing**  
+   - Divide input into chunks for parallel shuffling and hashing, ideal for large inputs.
 
-Timings for level 1,000:
--
- - 1 character, < 1 second
- - 10 characters, < 1 second
- - 100 characters, 1 second
+3. **Enhanced Mixing Step**  
+   - Apply XOR with prime-based rotations or matrix transformations to ensure greater bit diffusion.
 
-Timings for level 10,000:
--
- - 1 character, < 1 second
- - 10 characters, < 1 second
- - 100 characters, 3 seconds
+4. **Merkle-Damgård Construction**  
+   - Use a construction where each input block’s hash builds on the previous one (as in MD5 and SHA-1) for improved reliability.
 
-Timings for level 100,000:
--
- - 1 character, 1 second
- - 10 characters, 4 seconds
- - 100 characters, 27 seconds
+5. **Nonlinear Hash Functions**  
+   - Introduce operations like modular exponentiation with a prime modulus to increase hash sensitivity to input changes.
+  
+---
 
-Timings for level 1,000,000:
--
- - 1 character, 10 seconds
- - 10 characters, 20 seconds
- - 100 characters, 3 minutes
+## 📋 Known Limitations
 
+- **Large Message Processing**: Very large messages can take longer to hash.
+- **Small Changes Sensitivity**: Minor input changes may not always alter the final hash.
+- **Inefficient Shortening Function**: The shortening step could be optimized for better performance.
+- **Time-Intensive Operations**: The Fisher-Yates shuffle consumes the most processing time.
 
-
-
+> 💡 **Suggestions?** Feel free to contribute ideas or optimizations!
