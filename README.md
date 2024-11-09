@@ -3,8 +3,11 @@ python hashing software
 
 
 **Known limitations**
+
 a) Really large messages take a long time to process and small changes in the message can sometimes not affect the final hash value
+
 b) Shortening function just not very good
+
 c) Function which takes the most time is the Fisher-Yates shuffle
 
 Feel free to give ideas about how to fix this!
