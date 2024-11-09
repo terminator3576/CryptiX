@@ -6,7 +6,7 @@ python hashing software
 
 1) Enter an input in input.txt
    
-3) Enter a security level, this will shuffle the bits more thouroughly the higher the number, reducing the probablility of collisions and apparent randomness, but is a tradeoff between time and security.
+3) Enter a security level, this will shuffle the bits more thouroughly the higher the number, reducing the probablility of collisions and increasing apparent randomness, but is a tradeoff between time and security.
    
 4) Now the algorithm calculates the hash by first of all shuffling the bits, then padding/shortening the output. Last of all, it uses a variation of the Merkle–Hellman cryptosystem to produce a strong hash. 
 
