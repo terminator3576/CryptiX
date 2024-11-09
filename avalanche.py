@@ -171,6 +171,5 @@ def hash_text(text, security):
     return swap
 
 def mainA(message, security):
-    # Calculate hash values
     result = hash_text(str(message), security)
     return result
