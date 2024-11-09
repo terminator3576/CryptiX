@@ -12,16 +12,28 @@ c) Function which takes the most time is the Fisher-Yates shuffle
 
 Feel free to give ideas about how to fix this!
 
+**Future updates**
+
+a) Use Block Processing: Instead of shuffling the entire input, process it in smaller, fixed-size blocks (e.g., 512-bit or 1024-bit). This would reduce the time complexity, making it faster without compromising security.
+
+b) Parallel Processing: For large inputs, divide the input into chunks that can be shuffled and hashed in parallel threads. This could substantially reduce the time required for processing.
+
+c) Add a Mixing or Diffusion Step: After the Fisher-Yates shuffle, apply a diffusion function, such as XOR with prime number-based rotations or matrix transformations. This ensures that each bit in the input can affect many bits in the final hash.
+
+d) Implement a Merkle-Damgård Construction: To improve reliability, use a Merkle-Damgård-style construction, where each input block’s hash depends on the previous block. This technique is used in many strong hash functions like MD5 and SHA-1.
+
+e) Incorporate Nonlinear Hash Functions: Integrate a nonlinear operation after shuffling, such as modular exponentiation with a prime modulus. This could introduce more sensitivity to bit changes.
+
 
 **Use**
 
 1) Enter an input in input.txt
    
-3) Enter a security level, this will shuffle the bits more thouroughly the higher the number, reducing the probablility of collisions and increasing apparent randomness, but is a tradeoff between time and security.
+2) Enter a security level, this will shuffle the bits more thouroughly the higher the number, reducing the probablility of collisions and increasing apparent randomness, but is a tradeoff between time and security.
    
-4) Now the algorithm calculates the hash by first of all shuffling the bits, then padding/shortening the output. Last of all, it uses a variation of the Merkle–Hellman cryptosystem to produce a strong hash. 
+3) Now the algorithm calculates the hash by first of all shuffling the bits, then padding/shortening the output. Last of all, it uses a variation of the Merkle–Hellman cryptosystem to produce a strong hash. 
 
-5) Finally, you get your output which, without a computer, would take days to calculate. You however don't care and having entered an excessively large security level are wondering why it took so long :)
+4) Finally, you get your output which, without a computer, would take days to calculate. You however don't care and having entered an excessively large security level are wondering why it took so long :)
 
 Timings for level 100:
  - 
