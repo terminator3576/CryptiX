@@ -6,6 +6,7 @@ import numpy as np
 def unlist(lst):
     return ' '.join(map(str, lst))
 
+#main hashing function
 def hash(message, public_key):
     hashed = 0
     counter = 0
@@ -25,6 +26,7 @@ def hash(message, public_key):
 
     return hashed
 
+#further encryption for smaller messages needing to be more secure
 def encrypt(message, security):
     np.random.seed(int(security))
     ans = []
@@ -36,11 +38,9 @@ def encrypt(message, security):
     ans = unlist(ans)
     return ans
             
-            
-    
 def main(message, public_key, security):
     message = mainA(message, security)
-    if len(str(message)) <= 1000:
+    if len(str(message)) <= 1000 and security > 100:
         message = encrypt(message, security)
     message = pad_message(message)
     hashed1 = hash(str(message), public_key)
