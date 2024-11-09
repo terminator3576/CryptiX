@@ -56,6 +56,9 @@ To improve performance and hash reliability, the following updates are planned:
 5. **Nonlinear Hash Functions**  
    - Introduce operations like modular exponentiation with a prime modulus to increase hash sensitivity to input changes.
   
+6. **Random module file**
+   - Create a file which handles randomness and gives a consistent result over runtimes
+  
 ---
 
 ## 📋 Known Limitations
@@ -64,5 +67,6 @@ To improve performance and hash reliability, the following updates are planned:
 - **Small Changes Sensitivity**: Minor input changes may not always alter the final hash.
 - **Inefficient Shortening Function**: The shortening step could be optimized for better performance.
 - **Time-Intensive Operations**: The Fisher-Yates shuffle consumes the most processing time.
+- **Inconsistent outputs**: Different runtimes will give different outputs due to the nature of pseudo random seeds
 
 > 💡 **Suggestions?** Feel free to contribute ideas or optimizations!
