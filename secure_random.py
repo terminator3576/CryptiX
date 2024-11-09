@@ -31,5 +31,3 @@ class SecureRNG:
 def main_random(min_value, max_value, seed):
   x = SecureRNG(seed) 
   return x.next_int(min_value, max_value)
-
-main_random(1, 1)
