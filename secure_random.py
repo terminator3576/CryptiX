@@ -24,7 +24,7 @@ class SecureRNG:
         """
         Generate cryptographically secure random bytes of a specified length.
         """
-        self.counter += 1
+        self.counter += 1 
         hash_input = self.seed + self.counter.to_bytes(16, byteorder='big')
         return hashlib.sha256(hash_input).digest()[:num_bytes]
 
