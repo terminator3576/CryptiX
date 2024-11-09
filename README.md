@@ -20,7 +20,7 @@ b) Parallel Processing: For large inputs, divide the input into chunks that can 
 
 c) Add a Mixing or Diffusion Step: After the Fisher-Yates shuffle, apply a diffusion function, such as XOR with prime number-based rotations or matrix transformations. This ensures that each bit in the input can affect many bits in the final hash.
 
-d) Implement a Merkle-Damgård Construction: To improve reliability, use a Merkle-Damgård-style construction, where each input block’s hash depends on the previous block. This technique is used in many strong hash functions like MD5 and SHA-1.
+d) Implement a Merkle-Damgård Construction: To improve reliability, use a Merkle-Damgård-style construction, where each input block’s hash depends on the previous block. Used in MD5 and SHA-1.
 
 e) Incorporate Nonlinear Hash Functions: Integrate a nonlinear operation after shuffling, such as modular exponentiation with a prime modulus. This could introduce more sensitivity to bit changes.
 
