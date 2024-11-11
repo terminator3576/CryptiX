@@ -1,6 +1,7 @@
 import numpy as np
 import string
 import sys
+from secure_random import main_random
 
 sys.set_int_max_str_digits(100000000)
 
