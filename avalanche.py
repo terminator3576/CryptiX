@@ -127,7 +127,7 @@ def unlist(binary_str):
 
 #more bit shuffling
 def shuffle(message):
-    choice = np.random.randint(1,1000000000000)
+    choice = main_random(1, 1000000000000, ord(message[-1]))
     message = int(message) + choice
     return message
 
