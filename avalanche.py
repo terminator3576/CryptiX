@@ -1,4 +1,3 @@
-import numpy as np
 import string
 import sys
 from secure_random import main_random
