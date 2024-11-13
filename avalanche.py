@@ -122,21 +122,7 @@ def shuffle(message):
     message = int(message) + choice
     return message
 
-#initialise the seed
-def seed(ntext, password):
-    seed = zip(ntext)
-    nseed = 0
-    for ch in seed:
-        my_character = ch[0]
-        my_string = str(my_character)
-        nseed += ord(my_string)
-
-    nseed2 = 0
-    for ch in password:
-        my_string = str(ch)
-        nseed2 += ord(my_string)
-
-#inverse the message depending on the seed
+#inverse the message randomly
 def inverse(message):
     choice = main_random(1, 1010101, ord(message[1]))
     if choice % 2 == 0:
