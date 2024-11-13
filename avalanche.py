@@ -2,8 +2,8 @@ import string
 import sys
 from secure_random import main_random
 
-sys.set_int_max_str_digits(100000000)
 
+sys.set_int_max_str_digits(100000000)
 values = []
 weights = []
 
@@ -72,8 +72,7 @@ def deterministic_shuffle(lst):
     shuffled_lst = nlst[:]
     n = len(shuffled_lst)
     for i in range(n-1, 0, -1):
-        j = np.random.randint(0, i+1)
-        j = main_random(0,i+1,ord(str(i)))
+        j = main_random(0, i+1, ord(str(list[0])))
         shuffled_lst[i], shuffled_lst[j] = shuffled_lst[j], shuffled_lst[i]
 
     return shuffled_lst
@@ -120,9 +119,9 @@ def unlist(binary_str):
 def shuffle(message):
     choice = main_random(1, 1000000000000, ord(message[-1]))
     message = int(message) + choice
-    return message
+    return message 
 
-#inverse the message randomly
+#inverse the message depending on the seed
 def inverse(message):
     choice = main_random(1, 1010101, ord(message[1]))
     if choice % 2 == 0:
