@@ -74,6 +74,7 @@ def deterministic_shuffle(lst):
     n = len(shuffled_lst)
     for i in range(n-1, 0, -1):
         j = np.random.randint(0, i+1)
+        j = main_random(0,i+1,ord(str(i)))
         shuffled_lst[i], shuffled_lst[j] = shuffled_lst[j], shuffled_lst[i]
 
     return shuffled_lst
