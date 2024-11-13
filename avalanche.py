@@ -138,7 +138,7 @@ def seed(ntext, password):
 
 #inverse the message depending on the seed
 def inverse(message):
-    choice = main_random(1, 1010101, ord(message[1])
+    choice = main_random(1, 1010101, ord(message[1]))
     if choice % 2 == 0:
         return message[::-1]
     else:
