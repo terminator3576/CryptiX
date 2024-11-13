@@ -8,15 +8,6 @@ sys.set_int_max_str_digits(100000000)
 values = []
 weights = []
 
-#generate a seed
-def generate_password(text, length=40):
-    ln = len(text)
-    np.random.seed(int(text[ln-7:ln]))
-    characters = np.array(list(string.ascii_letters + string.digits + string.punctuation))
-    password = ''.join(np.random.choice(characters, size=length))
-    return password
-
-
 #assign weights to bits depending on surrounding bit values and it's own value
 def calculate_weights(binary):
     n = len(binary)
@@ -144,11 +135,10 @@ def seed(ntext, password):
     for ch in password:
         my_string = str(ch)
         nseed2 += ord(my_string)
-    np.random.seed(nseed + nseed2)
 
 #inverse the message depending on the seed
 def inverse(message):
-    choice = np.random.randint(1,1010101010101)
+    choice = main_random(1, 1010101, ord(message[1])
     if choice % 2 == 0:
         return message[::-1]
     else:
@@ -158,8 +148,6 @@ def inverse(message):
 def hash_text(text, security):
     text = text_to_binary(text)
     ntext = unlist(text)
-    password = generate_password(ntext, 40)
-    seed(ntext, password)
     rearranged = rearrange_bits_based_on_weights(text, weights)
     xor_result = xor_binaries(values, rearranged)
     combined = combine_results(values, rearranged, xor_result)
